@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <meta charset="UTF-8">
+    <h1>DANH SÁCH NHÂN VIÊN</h1>
+    <button onclick="them()" style="background: red; color: white; padding:10px; border: none;">
+        Thêm nhân viên
+    </button>
+    
+    <div id="hien_thi"></div>
+
+    <script>
+        function xem() {
+            // Gọi API: /api/nhanvien bằng GET
+            fetch('/api/nhanvien')
+                .then(res => res.json()) // Chuyển sang JSON
+                .then(data => {
+                    var html = "";
+                    // Lặp qua từng nhân viên để tạo HTML
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<p><b>" + data[i].hoTen + "</b><br>";
+                        html += "MaNV: " + data[i].maNV + "<br>";
+                        html += "Họ tên: " + data[i].hoTen + "</p>";
+                    }
+                    // Đưa chuỗi HTML vào phần tử div ở trên
+                    document.getElementById("hien_thi").innerHTML = html;
+                });
+        }
+
+        function them() {
+            // Gửi request POST để thêm nhân viên
+            fetch('/api/nhanvien', { method: 'POST' })
+                .then(() => xem()); // Thêm xong gọi lại xem() cập nhật danh sách
+        }
+
+        xem(); // Chạy hàm xem ngay khi mở trang
+    </script>
+</body>
+</html>

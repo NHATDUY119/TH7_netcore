@@ -1,0 +1,20 @@
+@model Bai6.Models.NhanVien
+
+<h2 class="text-warning mt-4">Chỉnh sửa nhân viên</h2>
+
+<form action="/Home/Edit" method="post" class="mt-4" style="max-width: 500px;">
+    <div class="mb-3">
+        <label>Mã NV (Khóa - Không sửa):</label>
+        <input type="text" name="MaNV" class="form-control bg-light" value="@Model?.MaNV" readonly />
+    </div>
+    <div class="mb-3">
+        <label>Tên NV:</label>
+        <input type="text" name="TenNV" class="form-control" value="@Model?.TenNV" required />
+    </div>
+    <div class="mb-3">
+        <label>Phòng Ban:</label>
+        @Html.DropDownListFor(m => m.MaPB, ViewBag.PhongBanList as SelectList, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-warning">Cập nhật</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Quay lại</a>
+</form>

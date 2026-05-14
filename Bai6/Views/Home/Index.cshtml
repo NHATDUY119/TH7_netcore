@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Bai6.Models.NhanVien>
+@{ ViewBag.Title = "Danh sách nhân viên"; }
+
+<h2 class="text-primary mt-4">DANH SÁCH NHÂN VIÊN</h2>
+<a href="@Url.Action("Create")" class="btn btn-primary mb-3">Thêm nhân viên mới</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-info">
+        <tr><th>Mã NV</th><th>Họ và Tên</th><th>Phòng Ban</th><th>Thao tác</th></tr>
+    </thead>
+    <tbody>
+        @if(Model != null) {
+            foreach (var item in Model) {
+                <tr>
+                    <td>@item.MaNV</td>
+                    <td>@item.TenNV</td>
+                    <td>@item.TenPB</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.MaNV })" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="@Url.Action("Remove", new { id = item.MaNV })" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

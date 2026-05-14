@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Nhân viên</title>
+    
+    <!-- Nhúng thư viện Bootstrap 5 để làm đẹp giao diện -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Nhúng thư viện FontAwesome để lấy Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Viết thêm một chút CSS tùy chỉnh cho đẹp hơn -->
+    <style>
+        body {
+            background-color: #f4f6f9; /* Màu nền xám nhạt dịu mắt */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Đổ bóng cho khung */
+        }
+        .table th {
+            background-color: #4e73df; /* Màu xanh dương hiện đại */
+            color: white;
+            border-bottom: none;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fc;
+        }
+        .btn-action {
+            margin: 0 2px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card card-custom p-4 bg-white">
+            
+            <!-- Phần tiêu đề và nút Thêm mới -->
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                <h2 class="text-primary fw-bold m-0">
+                    <i class="fas fa-users me-2"></i>DANH SÁCH NHÂN VIÊN
+                </h2>
+                <a href="them.html" class="btn btn-success px-4 py-2 fw-semibold">
+                    <i class="fas fa-plus-circle me-1"></i> Thêm mới
+                </a>
+            </div>
+
+            <!-- Phần Bảng dữ liệu -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle border">
+                    <thead class="text-center">
+                        <tr>
+                            <th width="20%" class="py-3">Mã Nhân Viên</th>
+                            <th class="py-3">Họ và Tên</th>
+                            <th width="25%" class="py-3">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="list" class="text-center">
+                        <!-- Dữ liệu từ API sẽ được Javascript đổ vào đây -->
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // Hàm tải dữ liệu từ Backend (.NET Core)
+        function taiData() {
+            fetch("/api/nhanvien")
+                .then(r => r.json())
+                .then(data => {
+                    let html = "";
+                    data.forEach(x => {
+                        html += `
+                        <tr>
+                            <td class="fw-bold text-secondary">${x.manv}</td>
+                            <td class="text-start ps-4 fw-medium fs-5">${x.hoten}</td>
+                            <td>
+                                <a href="sua.html?ma=${x.manv}&ten=${x.hoten}" class="btn btn-warning btn-sm btn-action text-dark fw-semibold">
+                                    <i class="fas fa-edit"></i> Sửa
+                                </a>
+                                <button onclick="xoa('${x.manv}')" class="btn btn-danger btn-sm btn-action fw-semibold">
+                                    <i class="fas fa-trash-alt"></i> Xóa
+                                </button>
+                            </td>
+                        </tr>`;
+                    });
+                    document.getElementById('list').innerHTML = html;
+                })
+                .catch(err => {
+                    // Hiển thị dữ liệu mẫu để bạn xem trước giao diện nếu backend chưa chạy
+                    document.getElementById('list').innerHTML = `
+                        <tr>
+                            <td class="fw-bold text-secondary">NV01</td>
+                            <td class="text-start ps-4 fw-medium fs-5">Nguyễn Văn A (Dữ liệu mẫu)</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm btn-action text-dark fw-semibold"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn btn-danger btn-sm btn-action fw-semibold"><i class="fas fa-trash-alt"></i> Xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-secondary">NV02</td>
+                            <td class="text-start ps-4 fw-medium fs-5">Trần Thị B (Dữ liệu mẫu)</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm btn-action text-dark fw-semibold"><i class="fas fa-edit"></i> Sửa</button>
+                                <button class="btn btn-danger btn-sm btn-action fw-semibold"><i class="fas fa-trash-alt"></i> Xóa</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+        }
+
+        // Hàm xóa nhân viên
+        function xoa(id) {
+            // Dùng thư viện confirm mặc định, nhưng đổi câu chữ cho hay hơn
+            if(confirm("Bạn có chắc chắn muốn xóa nhân viên [" + id + "] không?")) {
+                fetch("/api/nhanvien/" + id, { method: "DELETE" })
+                .then(() => taiData());
+            }
+        }
+
+        // Gọi hàm tải dữ liệu ngay khi vừa mở trang
+        taiData();
+    </script>
+    
+    <!-- Thư viện Javascript của Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

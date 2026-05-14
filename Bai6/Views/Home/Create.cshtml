@@ -1,0 +1,20 @@
+@model Bai6.Models.NhanVien
+
+<h2 class="text-success mt-4">Thêm nhân viên mới</h2>
+
+<form action="/Home/Create" method="post" class="mt-4" style="max-width: 500px;">
+    <div class="mb-3">
+        <label>Mã NV:</label>
+        <input type="text" name="MaNV" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Tên NV:</label>
+        <input type="text" name="TenNV" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Phòng Ban:</label>
+        @Html.DropDownList("MaPB", ViewBag.PhongBanList as SelectList, "-- Chọn phòng ban --", new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-success">Lưu lại</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy</a>
+</form>
