@@ -1,0 +1,26 @@
+# Ignore build output
+**/bin/
+**/obj/
+bin/
+obj/
+
+# Visual Studio / IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# NuGet packages
+packages/
+
+# SQLite temporary files
+*.db
+*.db-shm
+*.db-wal
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
