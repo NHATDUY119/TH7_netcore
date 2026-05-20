@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Hàng Hóa và Nhà Cung Cấp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Quản Lý Hàng Hóa & Nhà Cung Cấp</h1>
+            <nav class="nav-tabs">
+                <button class="tab-btn active" data-tab="list">Danh Sách Hàng Hóa</button>
+                <button class="tab-btn" data-tab="search">Tìm Kiếm</button>
+                <button class="tab-btn" data-tab="add">Thêm Hàng Hóa</button>
+                <button class="tab-btn" data-tab="suppliers">Nhà Cung Cấp</button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Tab: Danh Sách Hàng Hóa -->
+            <div id="list" class="tab-content active">
+                <h2>Danh Sách Hàng Hóa</h2>
+                <div id="listLoading" class="loading">Đang tải dữ liệu...</div>
+                <table id="hangHoaTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã Hàng</th>
+                            <th>Tên Hàng</th>
+                            <th>Đơn Vị Tính</th>
+                            <th>Số Lượng Tồn</th>
+                            <th>Đơn Giá</th>
+                            <th>Nhà Cung Cấp</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hangHoaBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tab: Tìm Kiếm -->
+            <div id="search" class="tab-content">
+                <h2>Tìm Kiếm Hàng Hóa</h2>
+                <form id="searchForm" class="form">
+                    <div class="form-group">
+                        <label for="searchTenHang">Tên Hàng:</label>
+                        <input type="text" id="searchTenHang" placeholder="Nhập tên hàng">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchDonGiaMin">Đơn Giá Từ:</label>
+                            <input type="number" id="searchDonGiaMin" placeholder="0" min="0" step="1000">
+                        </div>
+                        <div class="form-group">
+                            <label for="searchDonGiaMax">Đơn Giá Đến:</label>
+                            <input type="number" id="searchDonGiaMax" placeholder="999999" min="0" step="1000">
+                        </div>
+                    </div>
+                    <button type="button" id="searchBtn" class="btn btn-primary">Tìm Kiếm</button>
+                </form>
+
+                <div id="searchResults" style="margin-top: 20px;">
+                    <h3>Kết Quả Tìm Kiếm</h3>
+                    <table id="searchResultsTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Mã Hàng</th>
+                                <th>Tên Hàng</th>
+                                <th>Đơn Vị Tính</th>
+                                <th>Số Lượng Tồn</th>
+                                <th>Đơn Giá</th>
+                                <th>Nhà Cung Cấp</th>
+                                <th>Hành Động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="searchResultsBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab: Thêm Hàng Hóa -->
+            <div id="add" class="tab-content">
+                <h2>Thêm Hàng Hóa Mới</h2>
+                <form id="addForm" class="form">
+                    <div class="form-group">
+                        <label for="tenHang">Tên Hàng: <span class="required">*</span></label>
+                        <input type="text" id="tenHang" required placeholder="Nhập tên hàng">
+                    </div>
+                    <div class="form-group">
+                        <label for="donViTinh">Đơn Vị Tính: <span class="required">*</span></label>
+                        <select id="donViTinh" required>
+                            <option value="">-- Chọn --</option>
+                            <option value="kg">kg</option>
+                            <option value="thùng">thùng</option>
+                            <option value="túi">túi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="soLuongTon">Số Lượng Tồn: <span class="required">*</span></label>
+                        <input type="number" id="soLuongTon" required min="0" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="donGia">Đơn Giá: <span class="required">*</span></label>
+                        <input type="number" id="donGia" required min="0" step="1000" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="maNCC">Nhà Cung Cấp: <span class="required">*</span></label>
+                        <select id="maNCC" required>
+                            <option value="">-- Chọn nhà cung cấp --</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Thêm Hàng Hóa</button>
+                </form>
+            </div>
+
+            <!-- Tab: Nhà Cung Cấp -->
+            <div id="suppliers" class="tab-content">
+                <h2>Quản Lý Nhà Cung Cấp</h2>
+                <table id="suppliersTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã NCC</th>
+                            <th>Tên Nhà Cung Cấp</th>
+                            <th>Địa Chỉ</th>
+                            <th>Điện Thoại</th>
+                        </tr>
+                    </thead>
+                    <tbody id="suppliersBody">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Alert -->
+        <div id="alert" class="alert alert-hidden"></div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cập Nhật Hàng Hóa</h2>
+            <form id="editForm" class="form">
+                <input type="hidden" id="editMaHang">
+                <div class="form-group">
+                    <label for="editTenHang">Tên Hàng: <span class="required">*</span></label>
+                    <input type="text" id="editTenHang" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDonViTinh">Đơn Vị Tính: <span class="required">*</span></label>
+                    <select id="editDonViTinh" required>
+                        <option value="kg">kg</option>
+                        <option value="thùng">thùng</option>
+                        <option value="túi">túi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editSoLuongTon">Số Lượng Tồn: <span class="required">*</span></label>
+                    <input type="number" id="editSoLuongTon" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="editDonGia">Đơn Giá: <span class="required">*</span></label>
+                    <input type="number" id="editDonGia" required min="0" step="1000">
+                </div>
+                <div class="form-group">
+                    <label for="editMaNCC">Nhà Cung Cấp: <span class="required">*</span></label>
+                    <select id="editMaNCC" required></select>
+                </div>
+                <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+Using launch settings from /workspaces/TH7_netcore/QuanLyHangHoa/Properties/launchSettings.json...
+Building...
+/workspaces/TH7_netcore/QuanLyHangHoa/Models/HangHoaSearchRequest.cs(5,23): warning CS8618: Non-nullable property 'TenHang' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the property as nullable. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Repositories/NhaCungCapRepository.cs(23,20): warning CS8603: Possible null reference return. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Repositories/HangHoaRepository.cs(23,20): warning CS8603: Possible null reference return. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(36,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(39,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(42,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(46,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(50,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(55,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+/workspaces/TH7_netcore/QuanLyHangHoa/Services/HangHoaService.cs(65,24): warning CS8619: Nullability of reference types in value of type '(bool, string, HangHoa?)' doesn't match target type '(bool success, string message, HangHoa data)'. [/workspaces/TH7_netcore/QuanLyHangHoa/QuanLyHangHoa.csproj]
+info: Microsoft.EntityFrameworkCore.Migrations[20411]
+      Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2026-05-20 09:16:30.8639968+00:00');
+      SELECT changes();
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+          "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+          "ProductVersion" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "MigrationId", "ProductVersion"
+      FROM "__EFMigrationsHistory"
+      ORDER BY "MigrationId";
+info: Microsoft.EntityFrameworkCore.Migrations[20405]
+      No migrations were applied. The database is already up to date.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      DELETE FROM "__EFMigrationsLock";
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5135
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /workspaces/TH7_netcore/QuanLyHangHoa
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "h"."MaHang", "h"."DonGia", "h"."DonViTinh", "h"."MaNCC", "h"."SoLuongTon", "h"."TenHang", "n"."MaNCC", "n"."DiaChi", "n"."DienThoai", "n"."TenNCC"
+      FROM "HangHoas" AS "h"
+      INNER JOIN "NhaCungCaps" AS "n" ON "h"."MaNCC" = "n"."MaNCC"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "h"."MaHang", "h"."DonGia", "h"."DonViTinh", "h"."MaNCC", "h"."SoLuongTon", "h"."TenHang", "n"."MaNCC", "n"."DiaChi", "n"."DienThoai", "n"."TenNCC"
+      FROM "HangHoas" AS "h"
+      INNER JOIN "NhaCungCaps" AS "n" ON "h"."MaNCC" = "n"."MaNCC"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@tenHang='?' (Size = 12)], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "HangHoas" AS "h"
+          WHERE "h"."TenHang" = @tenHang)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@id='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "n"."MaNCC", "n"."DiaChi", "n"."DienThoai", "n"."TenNCC"
+      FROM "NhaCungCaps" AS "n"
+      WHERE "n"."MaNCC" = @id
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Decimal), @p1='?' (Size = 2), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Size = 12)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "HangHoas" ("DonGia", "DonViTinh", "MaNCC", "SoLuongTon", "TenHang")
+      VALUES (@p0, @p1, @p2, @p3, @p4)
+      RETURNING "MaHang";
